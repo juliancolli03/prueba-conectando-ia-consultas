@@ -6,6 +6,7 @@ import healthRouter from './routes/health.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { initializeEmailService } from './config/email.js';
+import { initializeSheetsService } from './config/sheets.js';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -49,12 +50,20 @@ const internalAuth = (req, res, next) => {
   next();
 };
 
-// Inicializar servicio de email
+// Inicializar servicios
 try {
   initializeEmailService();
   logger.info('Email service initialized');
 } catch (error) {
   logger.warn({ error: error.message }, 'Email service initialization failed (will continue)');
+}
+
+// Inicializar servicio de Google Sheets
+try {
+  initializeSheetsService();
+  logger.info('Google Sheets service initialized');
+} catch (error) {
+  logger.warn({ error: error.message }, 'Google Sheets service initialization failed (will continue)');
 }
 
 // Rutas

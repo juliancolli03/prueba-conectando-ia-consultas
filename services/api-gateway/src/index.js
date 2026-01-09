@@ -62,8 +62,8 @@ const webhookLimiter = rateLimit({
 });
 app.use('/webhooks', webhookLimiter);
 
-// Servir frontend estático si existe (producción)
-// Intentar múltiples paths posibles
+// Servir frontend estático si existe (opcional, el frontend tiene su propio contenedor)
+// Esto es solo por si quieres servir el frontend desde el gateway
 const possiblePaths = [
   join(__dirname, '../../../apps/web/dist'), // Desarrollo monorepo
   join(__dirname, '../../web/dist'), // Docker con copy
@@ -94,8 +94,6 @@ if (webDistPath) {
     }
     next();
   });
-} else {
-  logger.info('No static files directory found. Frontend must be served separately.');
 }
 
 // Rutas

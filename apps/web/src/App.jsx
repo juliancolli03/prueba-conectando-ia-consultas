@@ -59,7 +59,10 @@ function App() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/leads', {
+      // En Docker, el nginx hace proxy de /api a api-gateway
+      // En desarrollo local, usar la URL completa
+      const apiUrl = import.meta.env.VITE_API_URL || '/api';
+      const response = await fetch(`${apiUrl}/leads`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -11,6 +11,7 @@ services:
       - PORT=4000
       - LEADS_SERVICE_URL=http://leads-service:4001
       - NOTIFICATIONS_SERVICE_URL=http://notifications-service:4002
+      - CORS_ORIGIN=http://localhost:3000,http://web:80
     env_file:
       - ./services/api-gateway/.env
     depends_on:
@@ -51,6 +52,22 @@ services:
       - PORT=4002
     env_file:
       - ./services/notifications-service/.env
+    volumes:
+      # Montar credenciales de Google Service Account si existe
+      - ./services/notifications-service/credentials:/app/credentials:ro
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: web
+    ports:
+      - "3000:80"
+    depends_on:
+      - api-gateway
     networks:
       - app-network
     restart: unless-stopped

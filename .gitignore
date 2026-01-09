@@ -18,3 +18,10 @@ coverage/
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# Google Service Account credentials
+**/credentials/*.json
+!**/credentials/*.example.json
+!**/credentials/.gitkeep
+service-account.json
+credentials.json

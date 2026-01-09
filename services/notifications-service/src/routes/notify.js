@@ -1,6 +1,7 @@
 import express from 'express';
 import { z } from 'zod';
 import { sendEmail } from '../config/email.js';
+import { saveLeadToSheet } from '../config/sheets.js';
 
 const router = express.Router();
 
@@ -116,6 +117,14 @@ Fecha: ${new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Bueno
       });
 
       req.log.info({ leadEmail: lead.email, event }, 'Lead notification sent successfully');
+
+      // Guardar en Google Sheets (best-effort, no bloquea)
+      saveLeadToSheet({
+        ...lead,
+        createdAt: lead.createdAt || new Date().toISOString()
+      }).catch(sheetsError => {
+        req.log.warn({ error: sheetsError.message }, 'Failed to save to Google Sheets (non-blocking)');
+      });
 
       return res.status(200).json({
         ok: true,
