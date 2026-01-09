@@ -1,0 +1,28 @@
+{
+  "name": "primer-logistica-automatizado",
+  "version": "1.0.0",
+  "description": "Microservicios + Frontend React para captura de leads",
+  "private": true,
+  "workspaces": [
+    "services/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:gateway": "npm run dev --workspace=services/api-gateway",
+    "dev:leads": "npm run dev --workspace=services/leads-service",
+    "dev:notifications": "npm run dev --workspace=services/notifications-service",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "build:web": "npm run build --workspace=apps/web",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "microservices",
+    "nodejs",
+    "react",
+    "leads"
+  ],
+  "author": "",
+  "license": "MIT"
+}

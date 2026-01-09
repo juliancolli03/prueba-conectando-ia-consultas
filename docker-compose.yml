@@ -1,0 +1,60 @@
+services:
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - LEADS_SERVICE_URL=http://leads-service:4001
+      - NOTIFICATIONS_SERVICE_URL=http://notifications-service:4002
+    env_file:
+      - ./services/api-gateway/.env
+    depends_on:
+      - leads-service
+      - notifications-service
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  leads-service:
+    build:
+      context: ./services/leads-service
+      dockerfile: Dockerfile
+    container_name: leads-service
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=production
+      - PORT=4001
+    env_file:
+      - ./services/leads-service/.env
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  notifications-service:
+    build:
+      context: ./services/notifications-service
+      dockerfile: Dockerfile
+    container_name: notifications-service
+    ports:
+      - "4002:4002"
+    environment:
+      - NODE_ENV=production
+      - PORT=4002
+    env_file:
+      - ./services/notifications-service/.env
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge

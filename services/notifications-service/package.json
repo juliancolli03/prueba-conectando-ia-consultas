@@ -1,0 +1,22 @@
+{
+  "name": "@app/notifications-service",
+  "version": "1.0.0",
+  "description": "Servicio de notificaciones por email SMTP",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.8",
+    "pino": "^8.17.2",
+    "pino-http": "^8.5.0",
+    "pino-pretty": "^10.3.1",
+    "zod": "^3.22.4"
+  },
+  "keywords": ["notifications", "email", "smtp", "microservices"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@app/leads-service",
+  "version": "1.0.0",
+  "description": "Servicio de gestión de leads con MongoDB",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "pino": "^8.17.2",
+    "pino-http": "^8.5.0",
+    "pino-pretty": "^10.3.1",
+    "zod": "^3.22.4"
+  },
+  "keywords": ["leads", "mongodb", "microservices"],
+  "author": "",
+  "license": "MIT"
+}

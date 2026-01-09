@@ -1,0 +1,20 @@
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+# Permitir .env.example
+!.env.example
+*.log
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+coverage/
+.nyc_output/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

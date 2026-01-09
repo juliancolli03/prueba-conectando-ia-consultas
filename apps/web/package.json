@@ -1,0 +1,24 @@
+{
+  "name": "@app/web",
+  "version": "1.0.0",
+  "description": "Frontend React para captura de leads",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.11"
+  },
+  "keywords": ["react", "frontend", "leads"],
+  "author": "",
+  "license": "MIT"
+}
