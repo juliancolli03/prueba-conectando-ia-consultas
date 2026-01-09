@@ -1,7 +1,7 @@
 {
-  "name": "primer-logistica-automatizado",
+  "name": "clasificador-leads",
   "version": "1.0.0",
-  "description": "Microservicios + Frontend React para captura de leads",
+  "description": "Clasificador de leads con IA, envío de mails automático y guardado en Google Sheets",
   "private": true,
   "workspaces": [
     "services/*",
